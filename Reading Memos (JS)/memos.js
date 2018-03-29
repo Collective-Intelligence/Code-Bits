@@ -30,7 +30,11 @@ async function retrMemos(username, log=false) {
 		if (old_history != false) {
 			for (var i = 0; i < old_history.length; i++) {
 				if (old_history[i][1]["op"][0] == "transfer") {
-					history.push(old_history[i]);
+					try {
+						history.push(JSON.parse(old_history[i][1]["op"][1]["memo"]));
+					} catch(e) {
+						//console.log(e);
+					}
 				}
 			}
 		} else {

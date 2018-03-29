@@ -23,12 +23,8 @@
 				retrMemos("anarchyhasnogods").then(data => {
 					var output = "<ul>";
 					for (var i = 0; i < data.length; i++) {
-						try {
-							console.log(JSON.parse(data[i][1]["op"][1]["memo"]));
-						} catch(e) {
-							console.log(e);
-						}
-						output = output.concat("<li>").concat(data[i][1]["op"][1]["memo"]).concat("</li>");
+						console.log(data[i]);
+						output = output.concat("<li>").concat(JSON.stringify(data[i])).concat("</li>");
 					}
 					output = output.concat("</ul>")
 					$("#2").html(output);
