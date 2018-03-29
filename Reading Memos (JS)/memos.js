@@ -19,7 +19,7 @@ async function retrAcc(username, log=false) {
 
 async function retrMemos(username, log=false) {
 	var old_history, history = [];
-	await steem.api.getAccountHistory(username, "-1", "10", (err, result) => {
+	await steem.api.getAccountHistory(username, "-1", "100", (err, result) => {
 		if (err == null) {
 			old_history = result;
 		} else {
