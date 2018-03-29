@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Reading Memos</title>
+		<meta charset="UTF-8" />
+
+		<!--
+			Libraries used:
+				- steemjs
+				- jQuery
+		-->
+
+		<script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> -->
+		
+		<script src="./memos.js"></script>
+		<script>
+			function onLoad() {
+				retrAcc("anarchyhasnogods").then(data => {
+					$("#1").html(data.name);
+				});
+				retrMemos("anarchyhasnogods").then(data => {
+					var output = "<ul>";
+					for (var i = 0; i < data.length; i++) {
+						try {
+							console.log(JSON.parse(data[i][1]["op"][1]["memo"]));
+						} catch(e) {
+							console.log(e);
+						}
+						output = output.concat("<li>").concat(data[i][1]["op"][1]["memo"]).concat("</li>");
+					}
+					output = output.concat("</ul>")
+					$("#2").html(output);
+				});
+			}
+		</script>
+	</head>
+
+	<body onload="onLoad();">
+		<p id="1">Boop</p>
+		<p id="2">Beep</p>
+	</body>
+</html>
