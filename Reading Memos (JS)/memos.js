@@ -19,7 +19,7 @@ async function retrAcc(username, log=false) {
 
 async function retrMemos(username, log=false) {
 	var old_history, history = [];
-	await steem.api.getAccountHistory(username, "-1", "100", (err, result) => {
+	await steem.api.getAccountHistory(username, "-1", "10", (err, result) => {
 		if (err == null) {
 			old_history = result;
 		} else {
@@ -31,9 +31,11 @@ async function retrMemos(username, log=false) {
 			for (var i = 0; i < old_history.length; i++) {
 				if (old_history[i][1]["op"][0] == "transfer") {
 					try {
-						history.push(JSON.parse(old_history[i][1]["op"][1]["memo"]));
+						if (old_history[i][1]["op"][1]["memo"] != false) {
+							history.push(JSON.parse(old_history[i][1]["op"][1]["memo"]));
+						}
 					} catch(e) {
-						//console.log(e);
+						console.log(e);
 					}
 				}
 			}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<script>
+			var ws = new WebSocket("ws://localhost:8765");
+			
+			function send() { //Some issues but should be fine
+				data = String($("input").val());
+				$("input").val("");
+
+				ws.send(data);
+				ws.close();
+				ws = new WebSocket("ws://localhost:8765");				
+			}
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<input type="text" placeholder="Data to send." />
+		<button onclick="send();">Send</button>
+
+		<p id="response"></p>
+
+	</body>
+
+</html>

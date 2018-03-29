@@ -23,10 +23,9 @@
 				retrMemos("anarchyhasnogods").then(data => {
 					var output = "<ul>";
 					for (var i = 0; i < data.length; i++) {
-						console.log(data[i]);
 						output = output.concat("<li>").concat(JSON.stringify(data[i])).concat("</li>");
 					}
-					output = output.concat("</ul>")
+					output = output.concat("</ul>");
 					$("#2").html(output);
 				});
 			}
